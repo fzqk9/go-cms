@@ -1,26 +1,30 @@
-# ---> Go
-# Compiled Object files, Static and Dynamic libs (Shared Objects)
-*.o
-*.a
-*.so
+.idea/
+/web/node_modules
+/web/dist
 
-# Folders
-_obj
-_test
+.DS_Store
 
-# Architecture specific extensions/prefixes
-*.[568vq]
-[568vq].out
+# local env files
+.env.local
+.env.*.local
 
-*.cgo1.go
-*.cgo2.c
-_cgo_defun.c
-_cgo_gotypes.go
-_cgo_export.*
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-_testmain.go
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-*.exe
-*.test
-*.prof
+go.sum
+/server/log/
+/server/gva
+/server/latest_log
 
+*.iml
