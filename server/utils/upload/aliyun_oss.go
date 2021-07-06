@@ -25,8 +25,8 @@ func (*AliyunOSS) UploadFile(file *multipart.FileHeader) (string, string, error)
 		global.GVA_LOG.Error("function file.Open() Failed", zap.Any("err", openError.Error()))
 		return "", "", errors.New("function file.Open() Failed, err:" + openError.Error())
 	}
-
-	//上传阿里云路径 文件名格式 自己可以改 建议保证唯一性
+	defer f.Close() // 创建文件 defer 关闭
+	// 上传阿里云路径 文件名格式 自己可以改 建议保证唯一性
 	yunFileTmpPath := filepath.Join("uploads", time.Now().Format("2006-01-02")) + "/" + file.Filename
 
 	// 上传文件流。

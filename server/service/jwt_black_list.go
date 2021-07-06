@@ -26,7 +26,8 @@ func JsonInBlacklist(jwtList model.JwtBlacklist) (err error) {
 //@return: bool
 
 func IsBlacklist(jwt string) bool {
-	isNotFound := errors.Is(global.GVA_DB.Where("jwt = ?", jwt).First(&model.JwtBlacklist{}).Error, gorm.ErrRecordNotFound)
+	err := global.GVA_DB.Where("jwt = ?", jwt).First(&model.JwtBlacklist{}).Error
+	isNotFound := errors.Is(err, gorm.ErrRecordNotFound)
 	return !isNotFound
 }
 
@@ -44,8 +45,8 @@ func GetRedisJWT(userName string) (err error, redisJWT string) {
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: SetRedisJWT
 //@description: jwt存入redis并设置过期时间
-//@param: userName string
-//@return: err error, redisJWT string
+//@param: jwt string, userName string
+//@return: err error
 
 func SetRedisJWT(jwt string, userName string) (err error) {
 	// 此处过期时间等于jwt过期时间
